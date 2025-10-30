@@ -24,7 +24,7 @@ export function LoginTab({ ...arg }) {
 
 
   async function onLogin() {
-    const res = await fetch('http://localhost:4000/auth/login', {
+    const res = await fetch('http://0.0.0.0:4000/auth/login', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -44,7 +44,7 @@ export function LoginTab({ ...arg }) {
   }
 
   async function onCookieLogin(authCookie: string) {
-    const res = await fetch('http://localhost:4000/auth/login', {
+    const res = await fetch('http://0.0.0.0:4000/auth/login', {
       method: 'POST',
       credentials: 'include',
       headers: {

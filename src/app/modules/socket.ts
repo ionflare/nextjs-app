@@ -3,7 +3,7 @@ import { APPSTATUS, appInfo } from '../modules/appInfo';
 class Socket {
     instance: WebSocket;
     constructor() {
-        this.instance = new WebSocket('ws://localhost:4000/ws');
+        this.instance = new WebSocket('ws://0.0.0.0:4000/ws');
         this.instance.onopen = (e) => { console.log('init websocket') }
     }
     init() {
