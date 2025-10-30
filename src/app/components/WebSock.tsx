@@ -29,7 +29,7 @@ export function WebSock({ ...arg }) {
   const { setAppStatus, setRoom, setChatMsg, setWsLoader, setGame } = useAppActions();
   const { user, appStatus, wsEvent, wsLoader, room } = useAppState();
   useEffect(() => {
-    ws = new WebSocket('ws://localhost:4000/ws');
+    ws = new WebSocket('ws://0.0.0.0:4000/ws');
     ws.onopen = (e) => {
       console.log('init websocket'); setAppStatus(1);
       //console.log(room);
