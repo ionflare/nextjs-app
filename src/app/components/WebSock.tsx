@@ -2,8 +2,6 @@ import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 're
 import { useAppState, useAppActions, APPSTATUS } from './AppContext';
 import { setFips } from 'crypto';
 
-
-
 export const EVCODE = {
   RES_CONNECT: 'RES_CONNECT',
   REQ_UPSOCKET: 'REQ_UPSOCKET',
@@ -29,7 +27,10 @@ export function WebSock({ ...arg }) {
   const { setAppStatus, setRoom, setChatMsg, setWsLoader, setGame } = useAppActions();
   const { user, appStatus, wsEvent, wsLoader, room } = useAppState();
   useEffect(() => {
-    ws = new WebSocket('ws://0.0.0.0:4000/ws');
+    //ws = new WebSocket('ws://0.0.0.0:4000/ws');
+    const isProd = process.env.NEXT_PUBLIC_NODE_ENV === 'production';
+    const wsServerIp = (isProd)?process.env.NEXT_PUBLIC_WSSERVER_IP: '127.0.0.1';
+    ws = new WebSocket('ws://'+ wsServerIp + ':'+ process.env.NEXT_PUBLIC_WSSERVER_PORT + '/ws');
     ws.onopen = (e) => {
       console.log('init websocket'); setAppStatus(1);
       //console.log(room);
