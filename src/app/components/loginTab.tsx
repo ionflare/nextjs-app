@@ -24,7 +24,11 @@ export function LoginTab({ ...arg }) {
 
 
   async function onLogin() {
-    const res = await fetch('http://0.0.0.0:4000/auth/login', {
+    const isProd = process.env.NEXT_PUBLIC_NODE_ENV === 'production';
+    const wsServerIp = (isProd)?process.env.NEXT_PUBLIC_WSSERVER_IP: '127.0.0.1';
+    const svUrlAPI = 'http://' + wsServerIp + ':' + process.env.NEXT_PUBLIC_WSSERVER_PORT +'/auth/login';
+
+    const res = await fetch(svUrlAPI, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -44,7 +48,11 @@ export function LoginTab({ ...arg }) {
   }
 
   async function onCookieLogin(authCookie: string) {
-    const res = await fetch('http://0.0.0.0:4000/auth/login', {
+    const isProd = process.env.NEXT_PUBLIC_NODE_ENV === 'production';
+    const wsServerIp = (isProd)?process.env.NEXT_PUBLIC_WSSERVER_IP: '127.0.0.1';
+    const svUrlAPI = 'http://' + wsServerIp + ':' + process.env.NEXT_PUBLIC_WSSERVER_PORT +'/auth/login';
+
+    const res = await fetch(svUrlAPI, {
       method: 'POST',
       credentials: 'include',
       headers: {
